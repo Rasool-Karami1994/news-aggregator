@@ -3,11 +3,15 @@ import { IconContext } from "react-icons";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import defaultImg from "../assets/dontation_ukraine.4efc4e23e6c5dad61f94.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { addClientChoiceToFeedList } from "../features/feed/feedSlice";
+
 const Card = (props) => {
   let recivedData = props.props;
-  console.log(recivedData);
   const [filledHeart, setFilledHeart] = useState(null);
-
+  const disaptch = useDispatch();
+  const feedList = useSelector((state) => state.feedList);
+  console.log(feedList);
   function LinkIcon() {
     return (
       <IconContext.Provider
@@ -68,19 +72,17 @@ const Card = (props) => {
           <span>by</span>
           <span>{recivedData?.source}</span>
           <span>-</span>
-          <span>
-            {
-              recivedData?.date
-              // ?.toDateString()
-            }
-          </span>
+          <span>{recivedData?.date && recivedData?.date?.toDateString()}</span>
         </div>
         <p>{recivedData?.name?.slice(0, 150)}</p>
         <a href={recivedData?.urlName}>
           {recivedData?.urlName?.slice(0, 30)}&nbsp;
           {LinkIcon()}
         </a>
-        <div className="card-addToFeeds">
+        <div
+          className="card-addToFeeds"
+          onClick={() => disaptch(addClientChoiceToFeedList(recivedData))}
+        >
           {filledHeart ? filledHeartIcon() : emptyHeartIcon()}
           <span>add to feed</span>
         </div>

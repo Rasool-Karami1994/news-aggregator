@@ -19,6 +19,7 @@ const FilterMenu = () => {
   const [selectedFilterItem, setSelectedFilterItem] = useState(0);
 
   const dispatch = useDispatch();
+
   return (
     <div className="filterMenu-container">
       {filterList.map((item, index) => (

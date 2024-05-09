@@ -4,9 +4,16 @@ import axios from "axios";
 const gauardianApiKey = "f1452d9f-af00-477c-a2cf-01c67b866673";
 const gauardianBaseUrl = "https://content.guardianapis.com";
 export function getGauardianNews(options = {}) {
-  const { category, newest, oldest } = options;
+  let list = options?.payload;
+  const makedOptions = list?.reduce((acc, cur) => {
+    acc[cur.key] = cur.selectedValue;
+    return acc;
+  }, {});
+
+  const { category, date, q } = makedOptions;
   const searchValues = {
     section: category ?? null,
+    q: q ?? null,
   };
   let params = {};
   for (const [key, value] of Object.entries(searchValues)) {
@@ -17,16 +24,16 @@ export function getGauardianNews(options = {}) {
       params[`${key}`] = value;
   }
   const paramsHandler = () => {
-    if (newest) {
+    if (date === "newest") {
       params["from-date"] = new Date().toISOString().split("T")[0];
     }
-    if (oldest) {
-      let date = new Date();
-      date
+    if (date === "oldest") {
+      let dateT = new Date();
+      dateT
         .setDate(date.getDate() - 1)
         .toISOString()
         .split("T")[0];
-      params["to-date"] = date;
+      params["to-date"] = dateT;
     }
   };
   paramsHandler();
@@ -40,21 +47,28 @@ export function getGauardianNews(options = {}) {
 //News Api
 const newsApiKey = "ed5e7160e76144a991e84b5d57a6cbd3";
 const newApiBaseUrl = "https://newsapi.org/v2";
-let date = new Date();
+let dateTime = new Date();
 
 export function getNewsApiNews(options = {}) {
-  const { category, newest, oldest, source } = options;
+  let list = options?.payload;
+  const makedOptions = list?.reduce((acc, cur) => {
+    acc[cur.key] = cur.selectedValue;
+    return acc;
+  }, {});
+
+  const { category, date, source, q } = makedOptions;
   const searchValues = {
-    q: category ?? null,
+    q: q ? q : category ? category : null,
     pageSize: 10,
     sources: source ?? null,
-    from: newest ? new Date().toISOString().split("T")[0] : null,
-    to: oldest
-      ? date
-          .setDate(date.getDate() - 1)
-          .toISOString()
-          .split("T")[0]
-      : null,
+    from: date === "newest" ? new Date().toISOString().split("T")[0] : null,
+    to:
+      date === "oldest"
+        ? dateTime
+            .setDate(dateTime.getDate() - 1)
+            .toISOString()
+            .split("T")[0]
+        : null,
   };
   let params = {};
   for (const [key, value] of Object.entries(searchValues)) {

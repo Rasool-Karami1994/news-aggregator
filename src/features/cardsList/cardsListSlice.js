@@ -5,19 +5,15 @@ export const getInitialCardsListData = createAsyncThunk(
   "getCardsList",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await getGauardianNews({
-        // category: "world",
-      });
+      const response = await getGauardianNews({ payload });
 
       const secondRes = await getNewsApiNews({
-        category: "Tesla",
+        payload,
       });
 
       // const thirdRes = await getGoogleApiNews({ category: "Tesla" });
       // console.log(secondRes?.data?.articles);
 
-      // let data = response?.data?.response?.results;
-      // return data;
       const transformData = (arr1, arr2) => {
         const combinedArr = arr1.concat(arr2);
         return combinedArr.map((obj) => {

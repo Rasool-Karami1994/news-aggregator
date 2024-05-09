@@ -4,7 +4,7 @@ const CardsList = (props) => {
   const { data } = props;
   return (
     <div className="cardsList-container">
-      {data.map((item) => (
+      {data?.map((item) => (
         <Card key={item?.urlName} props={item} />
       ))}
     </div>
