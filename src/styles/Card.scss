@@ -1,0 +1,85 @@
+.card-container {
+  display: flex;
+  border: $border;
+  border-radius: $border-radius;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  min-height: 200px;
+  .card-contentContainer {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    .card-sourceAndDate-section {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      color: $secondry-text-color;
+      span:nth-child(2) {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+    p {
+      font-weight: $titles-font-weight;
+      font-size: 18px;
+      overflow-wrap: break-word;
+      width: 700px;
+      @include respond-to("semiLarge") {
+        width: 500px;
+        font-size: 16px;
+      }
+      @include respond-to("medium") {
+        width: 300px;
+        font-size: 16px;
+      }
+
+      @include respond-to("small") {
+        width: 220px;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: $main-color;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+  .card-addToFeeds {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    color: $secondry-text-color;
+  }
+  .card-imageContainer {
+    width: 200px;
+    height: 150px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: $border-radius;
+    }
+  }
+  @include respond-to("small") {
+    width: 100%;
+    border: none;
+    border-top: $border;
+    border-radius: 0;
+    &:last-of-type {
+      border-bottom: $border;
+    }
+    .card-imageContainer {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

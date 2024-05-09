@@ -1,0 +1,33 @@
+.searchForm-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 40px;
+
+  input {
+    background-color: $highlighted-main-color;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    height: 100%;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    padding: 0 10px;
+    color: $white-text-color;
+  }
+  select {
+    height: 100%;
+    width: 110px;
+    background-color: $highlighted-main-color;
+    border: none;
+    outline: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    padding: 0 8px;
+    color: $white-text-color;
+    width: 100px;
+  }
+}

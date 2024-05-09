@@ -1,0 +1,66 @@
+.filterMenu-container {
+  width: 100%;
+  padding: 0 10% 0 10%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+  height: 120px;
+  font-weight: $titles-font-weight;
+  color: $secondry-text-color;
+  @include respond-to("small") {
+    padding: 0 2% 0 2%;
+    height: 100px;
+    gap: 25px;
+  }
+  .filterMenu-item {
+    display: flex;
+    gap: 10px;
+
+    align-items: center;
+    span {
+      font-size: 12px;
+    }
+    select {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-weight: $titles-font-weight;
+      color: $secondry-text-color;
+      cursor: pointer;
+    }
+    @include respond-to("small") {
+      flex-direction: column;
+      span {
+        font-size: 10px;
+      }
+      select {
+        border: none;
+        outline: none;
+        font-size: 13px;
+        font-weight: $titles-font-weight;
+        cursor: pointer;
+      }
+    }
+  }
+  .filter-item {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    span {
+      font-size: 15px;
+    }
+  }
+  .filter-item:hover {
+    transform: scale(1.05);
+  }
+  .filter-item-selected {
+    color: $highlighted-main-color;
+    font-size: 18px;
+    font-weight: $titles-font-weight;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
