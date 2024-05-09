@@ -2,17 +2,12 @@ import { useState } from "react";
 import { IconContext } from "react-icons";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
-const Card = () => {
+import defaultImg from "../assets/dontation_ukraine.4efc4e23e6c5dad61f94.jpg";
+const Card = (props) => {
+  let recivedData = props.props;
+  console.log(recivedData);
   const [filledHeart, setFilledHeart] = useState(null);
-  const cardData = {
-    title: "Sdfsdfdsfsdfsdffffffggggggggggggggggggh",
-    date: new Date(),
-    source: "Cnn",
-    category: "Football",
-    link: "http://www.google.com",
-    imageUrl:
-      "https://cleantechnica.com/wp-content/uploads/2024/05/Tesla-Cybertruck-Off-Road-Guide-Cover-Screenshot-1600x890-1-800x445.png",
-  };
+
   function LinkIcon() {
     return (
       <IconContext.Provider
@@ -22,11 +17,7 @@ const Card = () => {
           cursior: "pointer",
         }}
       >
-        <div
-        // onClick={() => {
-        //   setSearchBarDrawerShow(!searchBarDrawerShow);
-        // }}
-        >
+        <div>
           <FaExternalLinkAlt />
         </div>
       </IconContext.Provider>
@@ -75,13 +66,18 @@ const Card = () => {
       <div className="card-contentContainer">
         <div className="card-sourceAndDate-section">
           <span>by</span>
-          <span>{cardData?.source}</span>
+          <span>{recivedData?.source}</span>
           <span>-</span>
-          <span>{cardData?.date.toDateString()}</span>
+          <span>
+            {
+              recivedData?.date
+              // ?.toDateString()
+            }
+          </span>
         </div>
-        <p>{cardData?.title.slice(0, 150)}</p>
-        <a href={cardData?.link}>
-          {cardData?.link.slice(0, 30)}&nbsp;
+        <p>{recivedData?.name?.slice(0, 150)}</p>
+        <a href={recivedData?.urlName}>
+          {recivedData?.urlName?.slice(0, 30)}&nbsp;
           {LinkIcon()}
         </a>
         <div className="card-addToFeeds">
@@ -90,7 +86,11 @@ const Card = () => {
         </div>
       </div>
       <div className="card-imageContainer">
-        <img src={cardData?.imageUrl}></img>
+        <img
+          src={recivedData?.imageUrl ?? defaultImg}
+          loading="lazy"
+          alt="card-image"
+        ></img>
       </div>
     </div>
   );

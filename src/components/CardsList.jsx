@@ -1,14 +1,12 @@
 import Card from "./Card";
 
-const CardsList = () => {
+const CardsList = (props) => {
+  const { data } = props;
   return (
     <div className="cardsList-container">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {data.map((item) => (
+        <Card key={item?.urlName} props={item} />
+      ))}
     </div>
   );
 };

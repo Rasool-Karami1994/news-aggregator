@@ -6,9 +6,6 @@ import { IoMdClose } from "react-icons/io";
 import { useWindowSize } from "../utiles/useWinowsSize";
 
 const Header = () => {
-  const [searchBarDrawerShow, setSearchBarDrawerShow] = useState(null);
-  const { width: windowWidth } = useWindowSize();
-  
   function SearchIcon() {
     return (
       <IconContext.Provider
@@ -24,6 +21,9 @@ const Header = () => {
       </IconContext.Provider>
     );
   }
+  const [searchBarDrawerShow, setSearchBarDrawerShow] = useState(null);
+  const { width: windowWidth } = useWindowSize();
+
   function CloseIcon() {
     return (
       <IconContext.Provider
@@ -43,9 +43,7 @@ const Header = () => {
     <div className="header-container">
       <h3>Rasool News</h3>
       {windowWidth > 768 && <SearchForm />}
-      <div className="MobileHeaderIcons-container">
-        {SearchIcon()}
-      </div>
+      <div className="MobileHeaderIcons-container">{SearchIcon()}</div>
       {searchBarDrawerShow && (
         <div className="searchBar-drawer">
           {CloseIcon()}
