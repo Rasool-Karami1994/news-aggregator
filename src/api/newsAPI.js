@@ -87,6 +87,7 @@ export function getNewsApiNews(options = {}) {
 }
 
 //Google Api
+
 // const googleApiKey = "e0aba3ed416fb00e9760a9f25100ba46";
 // const googleApiBaseUrl = "https://gnews.io/api/v4";
 // export function getGoogleApiNews(options = {}) {

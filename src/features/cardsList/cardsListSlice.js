@@ -6,7 +6,6 @@ export const getInitialCardsListData = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const response = await getGauardianNews({ payload });
-
       const secondRes = await getNewsApiNews({
         payload,
       });

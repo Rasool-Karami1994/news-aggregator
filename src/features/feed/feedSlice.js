@@ -5,8 +5,6 @@ const feedSlice = createSlice({
   initialState: [],
   reducers: {
     addClientChoiceToFeedList: (state, action) => {
-      console.log(action.payload);
-
       const forRemove = state.filter(
         (item) => item.urlName === action.payload.urlName
       );

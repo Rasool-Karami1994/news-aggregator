@@ -3,15 +3,13 @@ import { IconContext } from "react-icons";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import defaultImg from "../assets/dontation_ukraine.4efc4e23e6c5dad61f94.jpg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addClientChoiceToFeedList } from "../features/feed/feedSlice";
 
 const Card = (props) => {
   let recivedData = props.props;
   const [filledHeart, setFilledHeart] = useState(null);
   const disaptch = useDispatch();
-  const feedList = useSelector((state) => state.feedList);
-  console.log(feedList);
   function LinkIcon() {
     return (
       <IconContext.Provider

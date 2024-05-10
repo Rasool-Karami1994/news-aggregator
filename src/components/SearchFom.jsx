@@ -2,13 +2,11 @@ import { useState } from "react";
 import { IconContext } from "react-icons";
 import { FiSearch } from "react-icons/fi";
 import { addFilter } from "../features/filters/filtersSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const SearchForm = () => {
   const [searchKeyWord, SetSearchKeyWord] = useState("");
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
-  console.log(filters);
   function SearchIcon() {
     return (
       <IconContext.Provider

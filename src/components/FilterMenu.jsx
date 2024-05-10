@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFilter } from "../features/filters/filtersSlice";
 const FilterMenu = () => {
   const filterList = [
@@ -16,6 +16,29 @@ const FilterMenu = () => {
     },
     { value: "feed", name: "My Feed", options: null },
   ];
+  const feedList = useSelector((state) => state.feedList);
+
+  const feedHandler = () => {
+    let list = feedList.map((item) => item.section);
+    const itemCounts = {};
+    list.forEach((item) => {
+      itemCounts[item] = (itemCounts[item] || 0) + 1;
+    });
+    const maxCount = Math.max(...Object.values(itemCounts));
+    const result = Object.keys(itemCounts).reduce((acc, key) => {
+      if (itemCounts[key] === maxCount) {
+        acc[key] = maxCount;
+      }
+      return acc;
+    }, {});
+
+    const payload = {
+      key: "category",
+      selectedValue: [Object.keys(result)[0]][0],
+    };
+    dispatch(addFilter(payload));
+  };
+
   const [selectedFilterItem, setSelectedFilterItem] = useState(0);
 
   const dispatch = useDispatch();
@@ -39,6 +62,9 @@ const FilterMenu = () => {
                       ? "filter-item-selected"
                       : "filter-item"
                   }
+                  onClick={() => {
+                    feedHandler();
+                  }}
                 >
                   {item?.name}
                 </span>
@@ -48,7 +74,6 @@ const FilterMenu = () => {
                 name={item}
                 id={item}
                 onClick={(e) => {
-                  console.log(e.target.value);
                   let selectedValue = e.target.value;
                   let key = item.value;
                   const payload = {

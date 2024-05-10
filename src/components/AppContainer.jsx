@@ -9,7 +9,6 @@ const AppContainer = () => {
   const dispatch = useDispatch();
   const cardsList = useSelector((state) => state.cardsList);
   const filters = useSelector((state) => state.filters);
-  console.log(filters);
   const { error, loading, data } = cardsList;
   useEffect(() => {
     dispatch(getInitialCardsListData(filters));
