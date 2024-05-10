@@ -7,12 +7,12 @@ const FilterMenu = () => {
     {
       value: "category",
       name: "Category :",
-      options: ["none", "sport", "poletic", "economy", "war"],
+      options: ["none", "sport", "Law", "Film", "war"],
     },
     {
       value: "source",
       name: "Source :",
-      options: ["none", "Cnn", "News API", "News Cred"],
+      options: ["none", "Cnn", "NewsAPI", "NewsCred"],
     },
     { value: "feed", name: "My Feed", options: null },
   ];

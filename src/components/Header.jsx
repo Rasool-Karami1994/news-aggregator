@@ -1,5 +1,5 @@
 import { IconContext } from "react-icons";
-import SearchForm from "./SearchFom";
+import SearchForm from "./SearchForm";
 import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
