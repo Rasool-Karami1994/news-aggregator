@@ -1,0 +1,21 @@
+version: "3"
+services:
+  web:
+    # Use the Dockerfile in the current directory
+    build: .
+    # Run container in detached mode
+    restart: always
+    # Map container's port 3000 to local machine's port 3000
+    ports:
+      - "3000:3000"
+    # Run container with current user's UID and GID to avoid permission issues
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/app
+    # Run npm install and npm run build commands before starting the application
+    command: >
+      bash -c "sleep 5 &&
+      npm install &&
+      npm run build &&
+      npm run start"
