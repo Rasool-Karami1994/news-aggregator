@@ -120,7 +120,6 @@ This project uses the following third-party libraries:
  React-redux-toolkit
  Sass
  axios
- React Router
 
 ## Changelog
 
